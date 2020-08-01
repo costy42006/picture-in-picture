@@ -10,8 +10,14 @@ const selectMediaStream = async () => {
       videoElement.play();
     };
   } catch (error) {
+    if (!document.pictureInPictureEnabled) {
+      // Let the user know that PiP is not enabled/supported.
+      button.textContent = 'PiP is not supported in your browser.';
+      button.disabled = true;
+    } else {
     // Catch Error Here
     alert("Oops, something gone wrong. Sorry about that. Please try again later.");
+    }
   }
 }
 
